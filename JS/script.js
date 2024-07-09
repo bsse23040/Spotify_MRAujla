@@ -27,7 +27,7 @@ function getSongs(folder) {
     `;
     let as = div.getElementsByTagName("a");
     songs = Array.from(as).map(a => a.href.split(`${folder}/`)[1]);
-    
+
     // Update playlist UI
     let songUL = document.querySelector(".songList ul");
     songUL.innerHTML = "";
@@ -69,8 +69,20 @@ function getSongs(folder) {
 function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
     let albums = [
-        { folder: "A1_Karan_Aujla", title: "Aujla Anthems", description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks." },
-        { folder: "Random_Hits", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
+        { folder: "A1_Karan_Aujla", title: "Fade Into Walker",
+            description: "Lose yourself in the captivating beats and emotional journeys of Alan Walker's music." },
+          { folder: "Alan_Walker", title: "Turkish Songs",
+            description: "Discover the melodious Turkish tunes that will captivate your soul." },
+          { folder: "Gangsta_Mashup", title: "Thug Fusion",
+            description: "A powerful mix of gangsta tracks seamlessly mashed up for an intense listening experience." },
+          { folder: "Random_Hits", title: "Shuffle Sensations",
+            description: "A diverse mix of chart-toppers and hidden gems from various genres and eras." },
+          { folder: "Pure_18s", title: "80s Flashback",
+            description: "Travel back to the 80s with this nostalgic collection of timeless classics." },
+          { folder: "Slowed_Remix", title: "Chill Remixes",
+            description: "Enjoy a unique listening experience with these creatively slowed remixes." },
+          { folder: "Turkish_Songs", title: "Istanbul Beats",
+            description: "Experience the vibrant sounds of Istanbul, from its bustling streets to its serene Bosphorus shores." }
         // Add more albums as needed
     ];
 
