@@ -22,12 +22,28 @@ function getSongs(folder) {
     currFolder = folder;
     let div = document.createElement("div");
     div.innerHTML = `
-    <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Making Memories Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/On Top Artist Karan Aujla I llky.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/Softly Artist Karan Aujla I llky.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/Winning Speech Artist Karan Aujla I Mxrci (8D).mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Alone Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
     <a href="${folder}/Faded Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
     <a href="${folder}/PUBG X On My Way Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
+    <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3" data-folder="Gangsta_Mashup"></a>
+    <a href="${folder}/All Mashup 1 Artist Sidhu x Shubh X AP Dhillon.mp3" data-folder="Gangsta_Mashup"></a>
+    <a href="${folder}/All Mashup 2 Artist Diljit Dosanjh x Varinder Barar.mp3" data-folder="Gangsta_Mashup"></a>
+    <a href="${folder}/Beqarar Karke Hume Artist Hemant Kumar.mp3" data-folder="Pure_Olds"></a>
+    <a href="${folder}/Dekha Aik Khawab Artist Kishore Kumar for Amitabh Bachan.mp3" data-folder="Pure_Olds"></a>
+    <a href="${folder}/Ramaiya Vastavaiya Artist Mohammed Rafi.mp3" data-folder="Pure_Olds"></a>
+    <a href="${folder}/Yeh Ratein Yeh Mausam Artist  Kishore Kumar.mp3" data-folder="Pure_Olds"></a>
+    <a href="${folder}/Dedubluman You don't know Artist Sen Bilmezsin.mp3" data-folder="Turkish_Songs"></a>
+    <a href="${folder}/Aaja Sanam Slowed Remix Artist .mp3" data-folder="Slowed_Remix"></a>
+    <a href="${folder}/Akh Lari Bado Badi Artist Sidhu x Noor Jahan.mp3" data-folder="Slowed_Remix"></a>
+    <a href="${folder}/Jadon Holi Jai Slowed Reverb Artist Beghum Noor Jahan.mp3" data-folder="Slowed_Remix"></a>
+    <a href="${folder}/Pyar Hua Ikrar Hua Ft. Artist Divine x Shankar Jaikishan.mp3" data-folder="Slowed_Remix"></a>
+    <a href="${folder}/Apa Fir Milaangy Artist Savi Kahlon.mp3" data-folder="Random_Hits"></a>
+    <a href="${folder}/Her Artist Shubhneet Singh.mp3" data-folder="Random_Hits"></a>
     `;
 
     let folderNames = folder.split("/");
