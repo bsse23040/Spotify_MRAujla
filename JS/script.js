@@ -79,7 +79,7 @@ async function getSongs(folder) {
 
 // music playing function
 const playMusic = (track, pause = false) => {
-    currentSong.src = `Sppotify_MRAujla/assets/${currFolder}/${track}`;
+    currentSong.src = `assets/${currFolder}/${track}`;
     console.log(currentSong.src)
     if (!pause) {
         currentSong.play();
