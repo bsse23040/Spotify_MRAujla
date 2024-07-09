@@ -70,7 +70,7 @@ function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
     let albums = [
         { folder: "A1_Karan_Aujla", title: "Aujla Anthems", description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks." },
-        { folder: "Turkish_Songs", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
+        { folder: "Random_Hits", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
         // Add more albums as needed
     ];
 
