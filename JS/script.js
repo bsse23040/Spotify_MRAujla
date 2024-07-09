@@ -37,6 +37,8 @@ let as = div.getElementsByTagName("a");
 let songs = Array.from(as)
   .filter(a => a.dataset.folder === folderName)
   .map(a => a.href.split(`${folder}/`)[1]);
+
+console.log(songs);
     
     
     // Update playlist UI
