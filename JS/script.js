@@ -21,9 +21,9 @@ function getSongs(folder) {
     currFolder = folder;
     let div = document.createElement("div");
     div.innerHTML = `
-        <a href="${folder}/song1.mp3"></a>
-        <a href="${folder}/song2.mp3"></a>
-        <a href="${folder}/nextsong.mp3"></a>
+        <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3"></a>
+        <a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3"></a>
+        <a href="${folder}/Making Memories Artist Karan Aujla.mp3"></a>
     `;
     let as = div.getElementsByTagName("a");
     songs = Array.from(as).map(a => a.href.split(`${folder}/`)[1]);
@@ -70,7 +70,7 @@ function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
     let albums = [
         { folder: "A1_Karan_Aujla", title: "Aujla Anthems", description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks." },
-        { folder: "Turkish_songs", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
+        { folder: "Turkish_Songs", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
         // Add more albums as needed
     ];
 
