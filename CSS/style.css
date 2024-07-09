@@ -434,19 +434,21 @@ body {
         bottom: 1px;
     }
 
-    .spotifyPlaylists .cardContainer {
+    .cardContainer {
         padding-bottom: 131px;
         padding-right: 10px;
+        margin: 0;
+        justify-content: center;
     }
 
     .spotifyPlaylists .card {
         width: 39vw;
     }
-
-    .cardContainer {
-        margin: 0;
-        justify-content: center;
+    
+    .spotifyPlaylists .cardContainer> :last-child {
+        margin-bottom: 49px;
     }
+    
 
     .abovebar {
         flex-direction: column;
