@@ -77,7 +77,7 @@ function displayAlbums() {
             description: "A powerful mix of gangsta tracks seamlessly mashed up for an intense listening experience." },
           { folder: "Random_Hits", title: "Shuffle Sensations",
             description: "A diverse mix of chart-toppers and hidden gems from various genres and eras." },
-          { folder: "Pure_18s", title: "80s Flashback",
+          { folder: "Pure_80s", title: "80s Flashback",
             description: "Travel back to the 80s with this nostalgic collection of timeless classics." },
           { folder: "Slowed_Remix", title: "Chill Remixes",
             description: "Enjoy a unique listening experience with these creatively slowed remixes." },
