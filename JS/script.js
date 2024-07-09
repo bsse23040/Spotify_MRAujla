@@ -271,7 +271,7 @@ document.querySelector(".hamburger").addEventListener("click", () => {
 // Add event listener to cards only when screen width is below 1300px
     if (window.matchMedia("(max-width: 1300px)").matches) {
         Array.from(document.querySelectorAll(".card")).forEach(card => {
-            card.addEventListener("touchstart", () => {
+            card.addEventListener("click", () => {
                 document.querySelector(".left").style.left = "0";
             });
         });
@@ -284,6 +284,30 @@ document.querySelector(".close").addEventListener("click", () => {
 document.querySelector(".buttons").addEventListener("click", () => {
 alert(`This feature is under development`);
 });
+
+
+    // Add event listener to toggle no-hover class on cards when screen width is below 1300px
+    const mediaQuery = window.matchMedia("(max-width: 1300px)");
+
+    function handleMediaQueryChange(mediaQuery) {
+        if (mediaQuery.matches) {
+            // Add no-hover class to all .card elements
+            document.querySelectorAll(".card").forEach(card => {
+                card.classList.add("no-hover");
+            });
+        } else {
+            // Remove no-hover class from all .card elements
+            document.querySelectorAll(".card").forEach(card => {
+                card.classList.remove("no-hover");
+            });
+        }
+    }
+
+    // Initial check on page load
+    handleMediaQueryChange(mediaQuery);
+
+    // Listen for changes in media query
+    mediaQuery.addListener(handleMediaQueryChange);
 
 
 }
