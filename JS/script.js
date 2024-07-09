@@ -79,7 +79,7 @@ async function getSongs(folder) {
 
 // music playing function
 const playMusic = (track, pause = false) => {
-    currentSong.src = `/assets/${currFolder}/${track}`;
+    currentSong.src = `Sppotify_MRAujla/assets/${currFolder}/${track}`;
     console.log(currentSong.src)
     if (!pause) {
         currentSong.play();
@@ -95,8 +95,6 @@ const playMusic = (track, pause = false) => {
 async function displayAlbums() {
     let a = await fetch(`assets/musics/`);
     let response = await a.text();
-    console.log(`a text = ${a}`);
-    
     let div = document.createElement("div");
     div.innerHTML = response;
     let anchors = div.getElementsByTagName("a")
