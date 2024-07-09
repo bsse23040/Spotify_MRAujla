@@ -22,14 +22,14 @@ function getSongs(folder) {
     currFolder = folder;
     let div = document.createElement("div");
     div.innerHTML = `
+    <a href="${folder}/On Top Artist Karan Aujla I llky.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Making Memories Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
-    <a href="${folder}/On Top Artist Karan Aujla I llky.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Softly Artist Karan Aujla I llky.mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Winning Speech Artist Karan Aujla I Mxrci (8D).mp3" data-folder="A1_Karan_Aujla"></a>
     <a href="${folder}/Alone Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
-    <a href="${folder}/Faded Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
     <a href="${folder}/PUBG X On My Way Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
+    <a href="${folder}/Faded Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
     <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3" data-folder="Gangsta_Mashup"></a>
     <a href="${folder}/All Mashup 1 Artist Sidhu x Shubh X AP Dhillon.mp3" data-folder="Gangsta_Mashup"></a>
     <a href="${folder}/All Mashup 2 Artist Diljit Dosanjh x Varinder Barar.mp3" data-folder="Gangsta_Mashup"></a>
@@ -38,11 +38,11 @@ function getSongs(folder) {
     <a href="${folder}/Ramaiya Vastavaiya Artist Mohammed Rafi.mp3" data-folder="Pure_Olds"></a>
     <a href="${folder}/Yeh Ratein Yeh Mausam Artist  Kishore Kumar.mp3" data-folder="Pure_Olds"></a>
     <a href="${folder}/Dedubluman You don't know Artist Sen Bilmezsin.mp3" data-folder="Turkish_Songs"></a>
-    <a href="${folder}/Aaja Sanam Slowed Remix Artist .mp3" data-folder="Slowed_Remix"></a>
     <a href="${folder}/Akh Lari Bado Badi Artist Sidhu x Noor Jahan.mp3" data-folder="Slowed_Remix"></a>
     <a href="${folder}/Jadon Holi Jai Slowed Reverb Artist Beghum Noor Jahan.mp3" data-folder="Slowed_Remix"></a>
+    <a href="${folder}/Aaja Sanam Slowed Remix Artist .mp3" data-folder="Slowed_Remix"></a>
     <a href="${folder}/Pyar Hua Ikrar Hua Ft. Artist Divine x Shankar Jaikishan.mp3" data-folder="Slowed_Remix"></a>
-    <a href="${folder}/Apa Fir Milaangy Artist Savi Kahlon.mp3" data-folder="Random_Hits"></a>
+    <a href="${folder}/Maxico Artist Karan Aujla.mp3" data-folder="Random_Hits"></a>
     <a href="${folder}/Her Artist Shubhneet Singh.mp3" data-folder="Random_Hits"></a>
     `;
 
@@ -53,8 +53,6 @@ function getSongs(folder) {
     songs = Array.from(as)
         .filter(a => a.dataset.folder === folderName)
         .map(a => a.href.split(`${folder}/`)[1]);
-
-    console.log(songs);
     
     // Update playlist UI
     let songUL = document.querySelector(".songList ul");
@@ -286,28 +284,6 @@ alert(`This feature is under development`);
 });
 
 
-    // Add event listener to toggle no-hover class on cards when screen width is below 1300px
-    const mediaQuery = window.matchMedia("(max-width: 1300px)");
-
-    function handleMediaQueryChange(mediaQuery) {
-        if (mediaQuery.matches) {
-            // Add no-hover class to all .card elements
-            document.querySelectorAll(".card").forEach(card => {
-                card.classList.add("no-hover");
-            });
-        } else {
-            // Remove no-hover class from all .card elements
-            document.querySelectorAll(".card").forEach(card => {
-                card.classList.remove("no-hover");
-            });
-        }
-    }
-
-    // Initial check on page load
-    handleMediaQueryChange(mediaQuery);
-
-    // Listen for changes in media query
-    mediaQuery.addListener(handleMediaQueryChange);
 
 
 }

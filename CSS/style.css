@@ -144,15 +144,6 @@ body {
     cursor: pointer;
 }
 
-.spotifyPlaylists .card:hover {
-    background-color: rgb(62, 62, 62);
-
-    .play {
-        opacity: 1;
-        top: 162px;
-    }
-}
-
 .card img {
     width: 100%;
     object-fit: contain;
@@ -486,5 +477,16 @@ body {
 @media (max-width: 680px) {
     .spotifyPlaylists .card {
         width: 85vw;
+    }
+}
+
+@media (min-width: 1300px) {
+    .spotifyPlaylists .card:hover {
+        background-color: rgb(62, 62, 62);
+    
+        .play {
+            opacity: 1;
+            top: 162px;
+        }
     }
 }
