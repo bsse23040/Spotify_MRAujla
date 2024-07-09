@@ -80,7 +80,6 @@ async function getSongs(folder) {
 // music playing function
 const playMusic = (track, pause = false) => {
     currentSong.src = `assets/${currFolder}/${track}`;
-    console.log(currentSong.src)
     if (!pause) {
         currentSong.play();
     }
@@ -134,6 +133,8 @@ async function displayAlbums() {
 async function main() {
     songs = await getSongs('musics/A1_Karan_Aujla');
     playMusic(songs[0], true);
+    console.log(songs[0]);
+    
     // Display the list of all the songs
     displayAlbums();
 
