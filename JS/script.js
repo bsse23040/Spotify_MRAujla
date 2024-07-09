@@ -1,7 +1,7 @@
 // Global variables
-const currentSong = new Audio();
+let currentSong = new Audio();
 let songs = [];
-let currFolder = "";
+let currFolder;
 
 // Time formatting function
 function formatTime(seconds) {
@@ -16,35 +16,30 @@ function formatTime(seconds) {
     return minutes + ':' + secs;
 }
 
-// Function to get songs from a folder
+// Function to get songs in array from folder
 function getSongs(folder) {
     currFolder = folder;
     let div = document.createElement("div");
-    div.innerHTML = document.body.innerHTML;
+    div.innerHTML = `
+        <a href="${folder}/song1.mp3"></a>
+        <a href="${folder}/song2.mp3"></a>
+        <a href="${folder}/nextsong.mp3"></a>
+    `;
     let as = div.getElementsByTagName("a");
-    songs = [];
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        if (element.href.endsWith(".mp3")) {
-            songs.push(element.href.split(`/assets/${currFolder}/`)[1]);
-        }
-    }
-
-    // Display all songs in the playlist
+    songs = Array.from(as).map(a => a.href.split(`${folder}/`)[1]);
+    
+    // Update playlist UI
     let songUL = document.querySelector(".songList ul");
     songUL.innerHTML = "";
     songs.forEach(song => {
         let index1 = song.indexOf("Artist");
         let index2 = song.indexOf(".mp3");
-
         let mysongname = '';
         let myartistname = '';
-
         if (index1 !== -1 && index2 !== -1 && index1 < index2) {
             mysongname = song.substring(0, index1).replaceAll("%20", " ");
             myartistname = song.substring((index1 + 6), index2).replaceAll("%20", " ");
         }
-
         songUL.innerHTML += `<li>
                                 <img class="invert" src="assets/svgs/music.svg" alt="music icon">
                                 <div class="info">
@@ -58,8 +53,8 @@ function getSongs(folder) {
                              </li>`;
     });
 
-    // Attach event listeners to each song
-    Array.from(document.querySelector(".songList").getElementsByTagName("li")).forEach(e => {
+    // Attach event listeners to songs
+    Array.from(songUL.getElementsByTagName("li")).forEach(e => {
         e.addEventListener("click", () => {
             let songName = e.querySelector(".info div:first-child").textContent.trim();
             let artistName = e.querySelector(".info div:last-child").textContent.trim();
@@ -70,24 +65,12 @@ function getSongs(folder) {
     return songs;
 }
 
-// Function to display albums
+// Function to display albums from local data
 function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
-
-    // Simulated data - replace with actual logic to iterate through albums
     let albums = [
-        {
-            folder: "A1_Karan_Aujla",
-            title: "Aujla Anthems",
-            description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks.",
-            cover: "assets/musics/A1_Karan_Aujla/cover.jpeg"
-        },
-        {
-            folder: "Turkish_songs",
-            title: "Turkish Songs",
-            description: "Explore the richness of Turkish music.",
-            cover: "assets/musics/Turkish_songs/cover.jpeg"
-        },
+        { folder: "A1_Karan_Aujla", title: "Aujla Anthems", description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks." },
+        { folder: "Turkish_songs", title: "Turkish Songs", description: "Discover the melodious Turkish tunes that will captivate your soul." }
         // Add more albums as needed
     ];
 
@@ -96,22 +79,22 @@ function displayAlbums() {
             <div class="play">
                 <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
             </div>
-            <img src="${album.cover}" alt="cover pic">
+            <img src="assets/musics/${album.folder}/cover.jpeg" alt="cover pic">
             <h2>${album.title}</h2>
             <p>${album.description}</p>
         </div>`;
     });
 
-    // Load event listeners when cards are clicked
-    Array.from(document.getElementsByClassName("card")).forEach(e => {
-        e.addEventListener("click", item => {
-            getSongs(`musics/${item.currentTarget.dataset.folder}`);
+    // Attach event listeners to each album card
+    Array.from(cardContainer.getElementsByClassName("card")).forEach(e => {
+        e.addEventListener("click", async () => {
+            await getSongs(`musics/${e.dataset.folder}`);
         });
     });
 }
 
-// Function to play music
-function playMusic(track, pause = false) {
+// Music playing function
+const playMusic = (track, pause = false) => {
     currentSong.src = `assets/${currFolder}/${track}`;
     if (!pause) {
         currentSong.play();
@@ -122,10 +105,10 @@ function playMusic(track, pause = false) {
 }
 
 // Main function
-function main() {
+async function main() {
     displayAlbums();
 
-    // Play/pause functionality
+    // Song play pause on click
     const playWrapper = document.getElementById("play-wrapper");
     playWrapper.addEventListener("click", () => {
         if (currentSong.paused) {
@@ -137,8 +120,8 @@ function main() {
         }
     });
 
-    // Spacebar play/pause
-    document.addEventListener('keydown', event => {
+    // Song play pause on space bar
+    document.addEventListener('keydown', function (event) {
         if (event.code === 'Space') {
             if (currentSong.paused) {
                 currentSong.play();
@@ -150,20 +133,20 @@ function main() {
         }
     });
 
-    // Update time and seekbar
+    // Listen for time update
     currentSong.addEventListener("timeupdate", () => {
         document.querySelector(".songtime").innerHTML = `${formatTime(currentSong.currentTime)} / ${formatTime(currentSong.duration)}`;
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
     });
 
-    // Seekbar functionality
+    // Add an event listener to seekbar
     document.querySelector(".seekbar").addEventListener("click", e => {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = percent + "%";
         currentSong.currentTime = (currentSong.duration) * percent / 100;
     });
 
-    // Previous and next buttons
+    // Add event listener to previous and next button
     document.getElementById("previous").addEventListener("click", () => {
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
         if (index > 0) {
@@ -178,22 +161,32 @@ function main() {
         }
     });
 
-    // Volume control and visibility
+    // Adjusting the volume and updating the volume image on input change
     document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
         currentSong.volume = parseInt(e.target.value) / 100;
         const volumeImg = document.querySelector(".volume > img");
-        volumeImg.src = currentSong.volume === 0 ? "assets/svgs/mute.svg" : "assets/svgs/volume.svg";
+        if (currentSong.volume === 0) {
+            volumeImg.src = "assets/svgs/mute.svg";
+        } else {
+            volumeImg.src = "assets/svgs/volume.svg";
+        }
     });
 
+    // Volume range colorer
     document.querySelector('.my-range').addEventListener('input', function () {
         this.style.setProperty('--value', this.value + '%');
     });
 
+    // Controlling the visibility of the volume range
     document.querySelector('.volume').addEventListener('click', function () {
         const rangeElement = document.querySelector('.range');
-        rangeElement.style.visibility = rangeElement.style.visibility === 'hidden' ? 'visible' : 'hidden';
+        if (rangeElement.style.visibility === 'hidden') {
+            rangeElement.style.visibility = 'visible';
+        } else {
+            rangeElement.style.visibility = 'hidden';
+        }
     });
 }
 
-// Call main function when the document is fully loaded
+// Run main function when the document is ready
 document.addEventListener("DOMContentLoaded", main);
