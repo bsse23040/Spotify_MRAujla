@@ -20,26 +20,25 @@ function formatTime(seconds) {
 // Function to get songs in array from folder
 function getSongs(folder) {
     currFolder = folder;
-let div = document.createElement("div");
-div.innerHTML = `
-<a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
-<a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
-<a href="${folder}/Making Memories Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
-<a href="${folder}/Alone Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
-<a href="${folder}/Faded Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
-<a href="${folder}/PUBG X On My Way Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
-`;
+    let div = document.createElement("div");
+    div.innerHTML = `
+    <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/Making Memories Artist Karan Aujla.mp3" data-folder="A1_Karan_Aujla"></a>
+    <a href="${folder}/Alone Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
+    <a href="${folder}/Faded Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
+    <a href="${folder}/PUBG X On My Way Artist Alan Walker.mp3" data-folder="Alan_Walker"></a>
+    `;
 
-let folderNames = folder.split("/");
-let folderName = folderNames[folderNames.length - 1];
+    let folderNames = folder.split("/");
+    let folderName = folderNames[folderNames.length - 1];
 
-let as = div.getElementsByTagName("a");
-let songs = Array.from(as)
-  .filter(a => a.dataset.folder === folderName)
-  .map(a => a.href.split(`${folder}/`)[1]);
+    let as = div.getElementsByTagName("a");
+    songs = Array.from(as)
+        .filter(a => a.dataset.folder === folderName)
+        .map(a => a.href.split(`${folder}/`)[1]);
 
-console.log(songs);
-    
+    console.log(songs);
     
     // Update playlist UI
     let songUL = document.querySelector(".songList ul");
@@ -53,7 +52,6 @@ console.log(songs);
             mysongname = song.substring(0, index1).replaceAll("%20", " ");
             myartistname = song.substring((index1 + 6), index2).replaceAll("%20", " ");
         }
-
 
         songUL.innerHTML += `<li>
                                 <img class="invert" src="assets/svgs/music.svg" alt="music icon">
@@ -79,6 +77,24 @@ console.log(songs);
 
     return songs;
 }
+
+// Add event listener to previous and next buttons
+function addEventListenersToControlButtons() {
+    document.getElementById("previous").addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+        if (index > 0) {
+            playMusic(songs[index - 1]);
+        }
+    });
+
+    document.getElementById("next").addEventListener("click", () => {
+        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+        if (index < songs.length - 1) {
+            playMusic(songs[index + 1]);
+        }
+    });
+}
+
 
 // Function to display albums from local data
 function displayAlbums() {
@@ -145,12 +161,15 @@ const playMusic = (track, pause = false) => {
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
 }
 
-// Main function
+// Inside main function
 async function main() {
     songs = await getSongs('musics/A1_Karan_Aujla');
     playMusic(songs[0], true);
     // Display the list of all the songs
     displayAlbums();
+    
+    // Add event listeners to control buttons
+    addEventListenersToControlButtons();
 
     // Song play pause on click
     const playWrapper = document.getElementById("play-wrapper");
@@ -188,21 +207,6 @@ async function main() {
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
         document.querySelector(".circle").style.left = percent + "%";
         currentSong.currentTime = (currentSong.duration) * percent / 100;
-    });
-
-    // Add event listener to previous and next button
-    document.getElementById("previous").addEventListener("click", () => {
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
-        if (index > 0) {
-            playMusic(songs[index - 1]);
-        }
-    });
-
-    document.getElementById("next").addEventListener("click", () => {
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
-        if (index < songs.length - 1) {
-            playMusic(songs[index + 1]);
-        }
     });
 
     // Adjusting the volume and updating the volume image on input change
