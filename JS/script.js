@@ -256,6 +256,15 @@ document.querySelector(".hamburger").addEventListener("click", () => {
     document.querySelector(".left").style.left = "0";
 });
 
+// Add event listener to cards only when screen width is below 1300px
+    if (window.matchMedia("(max-width: 1300px)").matches) {
+        Array.from(document.querySelectorAll(".card")).forEach(card => {
+            card.addEventListener("click", () => {
+                document.querySelector(".left").style.left = "0";
+            });
+        });
+    }
+
 document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%";
 });

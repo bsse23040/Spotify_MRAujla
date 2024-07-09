@@ -392,7 +392,7 @@ body {
 
 
 
-@media (max-width: 550px) {
+@media (max-width: 680px) {
     .spotifyPlaylists .card{
         width: 85vw;
     }
