@@ -70,6 +70,46 @@ function getSongs(folder) {
     return songs;
 }
 
+// Function to display albums
+function displayAlbums() {
+    let cardContainer = document.querySelector(".cardContainer");
+
+    // Simulated data - replace with actual logic to iterate through albums
+    let albums = [
+        {
+            folder: "A1_Karan_Aujla",
+            title: "Aujla Anthems",
+            description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks.",
+            cover: "assets/musics/A1_Karan_Aujla/cover.jpeg"
+        },
+        {
+            folder: "Turkish_songs",
+            title: "Turkish Songs",
+            description: "Explore the richness of Turkish music.",
+            cover: "assets/musics/Turkish_songs/cover.jpeg"
+        },
+        // Add more albums as needed
+    ];
+
+    albums.forEach(album => {
+        cardContainer.innerHTML += `<div data-folder="${album.folder}" class="card">
+            <div class="play">
+                <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
+            </div>
+            <img src="${album.cover}" alt="cover pic">
+            <h2>${album.title}</h2>
+            <p>${album.description}</p>
+        </div>`;
+    });
+
+    // Load event listeners when cards are clicked
+    Array.from(document.getElementsByClassName("card")).forEach(e => {
+        e.addEventListener("click", item => {
+            getSongs(`musics/${item.currentTarget.dataset.folder}`);
+        });
+    });
+}
+
 // Function to play music
 function playMusic(track, pause = false) {
     currentSong.src = `assets/${currFolder}/${track}`;
@@ -79,37 +119,6 @@ function playMusic(track, pause = false) {
     document.getElementById("play-wrapper").innerHTML = `<lord-icon style="position:relative; scale:1.2; bottom: 2px;" src="https://cdn.lordicon.com/jctchmfs.json" trigger="hover" colors="primary:#ffffff" style="width:33px;height:33px"></lord-icon>`;
     document.querySelector(".songinfo").innerHTML = decodeURI(track);
     document.querySelector(".songtime").innerHTML = "00:00 / 00:00";
-}
-
-// Function to display albums
-function displayAlbums() {
-    let anchors = Array.from(document.getElementsByTagName("a"));
-    let cardContainer = document.querySelector(".cardContainer");
-    anchors.forEach(e => {
-        if (e.href.includes("/musics") && !e.href.includes(".htaccess")) {
-            let folder = e.href.split('/').slice(-2)[0];
-            fetch(`assets/musics/${folder}/info.json`)
-                .then(response => response.json())
-                .then(data => {
-                    cardContainer.innerHTML += `<div data-folder="${folder}" class="card">
-                        <div class="play">
-                            <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
-                        </div>
-                        <img src="assets/musics/${folder}/cover.jpeg" alt="cover pic">
-                        <h2>${data.title}</h2>
-                        <p>${data.description}</p>
-                    </div>`;
-                })
-                .catch(error => console.error('Error fetching album info:', error));
-        }
-    });
-
-    // Load event listeners when cards are clicked
-    Array.from(document.getElementsByClassName("card")).forEach(e => {
-        e.addEventListener("click", item => {
-            getSongs(`musics/${item.currentTarget.dataset.folder}`);
-        });
-    });
 }
 
 // Main function
