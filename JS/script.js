@@ -227,6 +227,16 @@ async function main() {
             rangeElement.style.visibility = 'hidden';
         }
     });
+
+    // Inside main() function in script2.js
+document.querySelector(".hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0";
+});
+
+document.querySelector(".close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-120%";
+});
+
 }
 
 // Run main function when the document is ready
