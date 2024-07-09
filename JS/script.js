@@ -24,6 +24,9 @@ function getSongs(folder) {
         <a href="${folder}/Aujla Mashup Artist Karan Aujla.mp3"></a>
         <a href="${folder}/Bachke Bachke Artist Karan Aujla.mp3"></a>
         <a href="${folder}/Making Memories Artist Karan Aujla.mp3"></a>
+        <a href="${folder}/Alone Artist Alan Walker.mp3"></a>
+        <a href="${folder}/Faded Artist Alan Walker.mp3"></a>
+        <a href="${folder}/PUBG X On My Way Artist Alan Walker.mp3"></a>
     `;
     let as = div.getElementsByTagName("a");
     songs = Array.from(as).map(a => a.href.split(`${folder}/`)[1]);
