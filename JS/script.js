@@ -96,20 +96,32 @@ function getSongs(folder) {
 
 // Add event listener to previous and next buttons
 function addEventListenersToControlButtons() {
-    document.getElementById("previous").addEventListener("click", () => {
+    const playPrevious = () => {
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
         if (index > 0) {
             playMusic(songs[index - 1]);
         }
-    });
+    };
 
-    document.getElementById("next").addEventListener("click", () => {
+    const playNext = () => {
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
         if (index < songs.length - 1) {
             playMusic(songs[index + 1]);
         }
+    };
+
+    document.getElementById("previous").addEventListener("click", playPrevious);
+    document.getElementById("next").addEventListener("click", playNext);
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+            playPrevious();
+        } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+            playNext();
+        }
     });
 }
+
 
 
 // Function to display albums from local data
