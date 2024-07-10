@@ -279,10 +279,16 @@ document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%";
 });
 
-document.querySelector(".loginbtn").addEventListener("click", () => {
-alert(`This feature is under development`);
-});
-
+if (window.innerWidth < 1300) {
+    document.querySelector(".signupbtn").addEventListener("click", () => {
+      alert("Sign up feature is only supported for laptop devices");
+    });
+  } else {
+    document.querySelector(".signupbtn").addEventListener("click", () => {
+        alert("Sign up feature is under development");
+      });
+  }
+  
 
 
 

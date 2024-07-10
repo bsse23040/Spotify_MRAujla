@@ -205,6 +205,9 @@ body {
 .loginbtn:hover {
     font-weight: bold;
     font-size: 17px;
+    border: 1px;
+    box-shadow: 0 0 5px rgb(169, 169, 169),
+    0 0 20px rgb(255, 255, 255)
 }
 
 .playbar {
@@ -464,7 +467,7 @@ body {
         position: relative;
         bottom: 128px;
         /* left: 136px; */
-        left: 53vw;
+        left: 52vw;
     }
 
     .range {
