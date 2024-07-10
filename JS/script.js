@@ -127,12 +127,12 @@ function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
     let albums = [
         {
-            folder: "A1_Karan_Aujla", title: "Fade Into Walker",
-            description: "Lose yourself in the captivating beats and emotional journeys of Alan Walker's music."
+            folder: "A1_Karan_Aujla", title: "Aujla Anthems",
+            description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks."
         },
         {
-            folder: "Alan_Walker", title: "Turkish Songs",
-            description: "Discover the melodious Turkish tunes that will captivate your soul."
+            folder: "Alan_Walker", title: "Fade Into Walker",
+            description: "Lose yourself in the captivating beats and emotional journeys of Alan Walker's music."
         },
         {
             folder: "Gangsta_Mashup", title: "Thug Fusion",
