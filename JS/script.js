@@ -3,6 +3,11 @@
 let currentSong = new Audio();
 let songs = [];
 let currFolder;
+let albums = [
+    {
+        folder: "A1_Karan_Aujla", title: "Aujla Anthems", number :"1",
+        description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks."
+    }]
 
 // Time formatting function
 function formatTime(seconds) {
@@ -104,9 +109,30 @@ function addEventListenersToControlButtons() {
     const playNext = () => {
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
         if (index < songs.length - 1) {
+            // Play the next song in the current album
             playMusic(songs[index + 1]);
+        } else {
+            // Get the current album's folder name
+            let currentFolder = currFolder.split("/").slice(-1)[0];
+    
+            // Get the index of the current album in the albums array
+            let albumIndex = albums.findIndex(album => album.folder === currentFolder);
+    
+            // Get the index of the next album to play
+            let nextAlbumIndex = albumIndex + 1;
+    
+            // If the next album index is within bounds, play its songs
+            if (nextAlbumIndex < albums.length) {
+                let nextAlbumFolder = albums[nextAlbumIndex].folder;
+                getSongs(`musics/${nextAlbumFolder}`);
+                playMusic(songs[0])
+            } else {
+                // Wrap around to the first album if reached the end
+                getSongs(`musics/${albums[0].folder}`);
+            }
         }
     };
+    
 
     document.getElementById("previous").addEventListener("click", playPrevious);
     document.getElementById("next").addEventListener("click", playNext);
@@ -125,47 +151,52 @@ function addEventListenersToControlButtons() {
 // Function to display albums from local data
 function displayAlbums() {
     let cardContainer = document.querySelector(".cardContainer");
-    let albums = [
+    albums = [
         {
-            folder: "A1_Karan_Aujla", title: "Aujla Anthems",
+            folder: "A1_Karan_Aujla", title: "Aujla Anthems", number :"1",
             description: "Feel the energy and passion of Karan Aujla's powerful Punjabi tracks."
         },
         {
-            folder: "Alan_Walker", title: "Fade Into Walker",
+            folder: "Alan_Walker", title: "Fade Into Walker", number :"2",
             description: "Lose yourself in the captivating beats and emotional journeys of Alan Walker's music."
         },
         {
-            folder: "Gangsta_Mashup", title: "Thug Fusion",
+            folder: "Gangsta_Mashup", title: "Thug Fusion", number :"3",
             description: "A powerful mix of gangsta tracks seamlessly mashed up for an intense listening experience."
         },
         {
-            folder: "Random_Hits", title: "Shuffle Sensations",
+            folder: "Random_Hits", title: "Shuffle Sensations", number :"4",
             description: "A diverse mix of chart-toppers and hidden gems from various genres and eras."
         },
         {
-            folder: "Pure_Olds", title: "80s Flashback",
+            folder: "Pure_Olds", title: "80s Flashback", number :"5",
             description: "Travel back to the 80s with this nostalgic collection of timeless classics."
         },
         {
-            folder: "Slowed_Remix", title: "Chill Remixes",
+            folder: "Slowed_Remix", title: "Chill Remixes", number :"6",
             description: "Enjoy a unique listening experience with these creatively slowed remixes."
         },
         {
-            folder: "Turkish_Songs", title: "Istanbul Beats",
+            folder: "Turkish_Songs", title: "Istanbul Beats", number :"7",
             description: "Experience the vibrant sounds of Istanbul, from its bustling streets to its serene Bosphorus shores."
         }
         // Add more albums as needed
     ];
 
-    albums.forEach(album => {
-        cardContainer.innerHTML += `<div data-folder="${album.folder}" class="card">
-            <div class="play">
-                <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
-            </div>
-            <img src="assets/musics/${album.folder}/cover.jpeg" alt="cover pic">
-            <h2>${album.title}</h2>
-            <p>${album.description}</p>
-        </div>`;
+    albums.forEach((album, index) => {
+        let nextIndex = index + 1;
+        if (nextIndex >= albums.length) {
+            nextIndex = 0;
+        }
+        cardContainer.innerHTML += `
+            <div data-folder="${album.folder}" data-nextFolder="${albums[nextIndex].folder}" class="card">
+                <div class="play">
+                    <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
+                </div>
+                <img src="assets/musics/${album.folder}/cover.jpeg" alt="cover pic">
+                <h2>${album.title}</h2>
+                <p>${album.description}</p>
+            </div>`;
     });
 
     // Attach event listeners to each album card
