@@ -279,7 +279,7 @@ document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%";
 });
 
-document.querySelector(".buttons").addEventListener("click", () => {
+document.querySelector(".loginbtn").addEventListener("click", () => {
 alert(`This feature is under development`);
 });
 
