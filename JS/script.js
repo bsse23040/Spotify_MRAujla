@@ -103,6 +103,27 @@ function addEventListenersToControlButtons() {
         let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
         if (index > 0) {
             playMusic(songs[index - 1]);
+        } else {
+            // Get the current album's folder name
+            let currentFolder = currFolder.split("/").slice(-1)[0];
+
+            // Get the index of the current album in the albums array
+            let albumIndex = albums.findIndex(album => album.folder === currentFolder);
+
+            // Get the index of the previous album to play
+            let previousAlbumIndex = albumIndex - 1;
+
+            // If the previous album index is within bounds, play its songs
+            if (previousAlbumIndex >= 0) {
+                let previousAlbumFolder = albums[previousAlbumIndex].folder;
+                getSongs(`musics/${previousAlbumFolder}`);
+                playMusic(songs[songs.length - 1]);
+            } else {
+                // Wrap around to the last album if reached the beginning
+                let lastAlbumIndex = albums.length - 1;
+                getSongs(`musics/${albums[lastAlbumIndex].folder}`);
+                playMusic(songs[songs.length - 1]);
+            }
         }
     };
 
@@ -114,26 +135,25 @@ function addEventListenersToControlButtons() {
         } else {
             // Get the current album's folder name
             let currentFolder = currFolder.split("/").slice(-1)[0];
-    
+
             // Get the index of the current album in the albums array
             let albumIndex = albums.findIndex(album => album.folder === currentFolder);
-    
+
             // Get the index of the next album to play
             let nextAlbumIndex = albumIndex + 1;
-    
+
             // If the next album index is within bounds, play its songs
             if (nextAlbumIndex < albums.length) {
                 let nextAlbumFolder = albums[nextAlbumIndex].folder;
                 getSongs(`musics/${nextAlbumFolder}`);
-                playMusic(songs[0])
+                playMusic(songs[0]);
             } else {
                 // Wrap around to the first album if reached the end
                 getSongs(`musics/${albums[0].folder}`);
-                playMusic(songs[0])
+                playMusic(songs[0]);
             }
         }
     };
-    
 
     document.getElementById("previous").addEventListener("click", playPrevious);
     document.getElementById("next").addEventListener("click", playNext);
@@ -146,6 +166,7 @@ function addEventListenersToControlButtons() {
         }
     });
 }
+
 
 
 
