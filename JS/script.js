@@ -129,6 +129,7 @@ function addEventListenersToControlButtons() {
             } else {
                 // Wrap around to the first album if reached the end
                 getSongs(`musics/${albums[0].folder}`);
+                playMusic(songs[0])
             }
         }
     };
@@ -184,12 +185,8 @@ function displayAlbums() {
     ];
 
     albums.forEach((album, index) => {
-        let nextIndex = index + 1;
-        if (nextIndex >= albums.length) {
-            nextIndex = 0;
-        }
         cardContainer.innerHTML += `
-            <div data-folder="${album.folder}" data-nextFolder="${albums[nextIndex].folder}" class="card">
+            <div data-folder="${album.folder}" class="card">
                 <div class="play">
                     <img src="https://img.icons8.com/sf-black-filled/64/play.png" alt="play" />
                 </div>
