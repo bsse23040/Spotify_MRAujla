@@ -317,7 +317,8 @@ document.querySelector(".hamburger").addEventListener("click", () => {
     document.querySelector(".left").style.left = "0";
 });
 
-// Add touch event listeners for swipe left
+
+// Add touch event listeners for swipe left and right
 let xDown = null;
 
 document.addEventListener('touchstart', handleTouchStart, false);
@@ -339,12 +340,14 @@ function handleTouchMove(event) {
     if (xDiff > 0) {
         // Swipe left detected
         document.querySelector(".left").style.left = "-120%";
+    } else {
+        // Swipe right detected
+        document.querySelector(".left").style.left = "0";
     }
 
     // Reset xDown
     xDown = null;
 }
-
 
 
 
