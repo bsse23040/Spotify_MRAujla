@@ -49,6 +49,7 @@ function getSongs(folder) {
     <a href="${folder}/Pyar Hua Ikrar Hua Ft. Artist Divine x Shankar Jaikishan.mp3" data-folder="Slowed_Remix"></a>
     <a href="${folder}/Maxico Artist Karan Aujla.mp3" data-folder="Random_Hits"></a>
     <a href="${folder}/Her Artist Shubhneet Singh.mp3" data-folder="Random_Hits"></a>
+    <a href="${folder}/Naina Artist Diljit Dosanjh.mp3" data-folder="Random_Hits"></a>
     `;
 
     let folderNames = folder.split("/");
