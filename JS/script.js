@@ -310,10 +310,45 @@ async function main() {
         }
     });
 
-    // Inside main() function in script2.js
+
+
+// Add click event listener to the hamburger icon
 document.querySelector(".hamburger").addEventListener("click", () => {
     document.querySelector(".left").style.left = "0";
 });
+
+// Add touch event listeners for swipe left
+let xDown = null;
+
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+function handleTouchStart(event) {
+    const firstTouch = event.touches[0];
+    xDown = firstTouch.clientX;
+}
+
+function handleTouchMove(event) {
+    if (!xDown) {
+        return;
+    }
+
+    let xUp = event.touches[0].clientX;
+    let xDiff = xDown - xUp;
+
+    if (xDiff > 0) {
+        // Swipe left detected
+        document.querySelector(".left").style.left = "-120%";
+    }
+
+    // Reset xDown
+    xDown = null;
+}
+
+
+
+
+
 
 // Add event listener to cards only when screen width is below 1300px
     if (window.matchMedia("(max-width: 1300px)").matches) {
