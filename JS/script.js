@@ -94,7 +94,6 @@ function getSongs(folder) {
             playMusic(`${songName} Artist ${artistName}.mp3`);
         });
     });
-
     return songs;
 }
 
@@ -340,6 +339,12 @@ if (window.innerWidth < 1300) {
   }
   
 
+  // Assuming currentSong is your audio element
+currentSong.addEventListener('timeupdate', function() {
+    if (currentSong.currentTime >= currentSong.duration) {
+        document.getElementById("next").click();
+    }
+});
 
 
 }
