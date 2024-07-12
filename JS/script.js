@@ -343,6 +343,10 @@ function handleTouchMove(event) {
         // Swipe left detected
         document.querySelector(".left").style.left = "-120%";
     }
+    else if (xDiff < 0) {
+        // Swipe left detected
+        document.querySelector(".left").style.left = "-120%";
+    }
 
     // Reset xDown
     xDown = null;
