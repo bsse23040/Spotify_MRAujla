@@ -183,14 +183,6 @@ function displayAlbums() {
             description: "Lose yourself in the captivating beats and emotional journeys of Alan Walker's music."
         },
         {
-            folder: "Gangsta_Mashup", title: "Thug Fusion", number :"3",
-            description: "A powerful mix of gangsta tracks seamlessly mashed up for an intense listening experience."
-        },
-        {
-            folder: "Random_Hits", title: "Shuffle Sensations", number :"4",
-            description: "A diverse mix of chart-toppers and hidden gems from various genres and eras."
-        },
-        {
             folder: "Pure_Olds", title: "80s Flashback", number :"5",
             description: "Travel back to the 80s with this nostalgic collection of timeless classics."
         },
@@ -199,8 +191,16 @@ function displayAlbums() {
             description: "Enjoy a unique listening experience with these creatively slowed remixes."
         },
         {
+            folder: "Gangsta_Mashup", title: "Thug Fusion", number :"3",
+            description: "A powerful mix of gangsta tracks seamlessly mashed up for an intense listening experience."
+        },
+        {
             folder: "Turkish_Songs", title: "Istanbul Beats", number :"7",
             description: "Experience the vibrant sounds of Istanbul, from its bustling streets to its serene Bosphorus shores."
+        },
+        {
+            folder: "Random_Hits", title: "Shuffle Sensations", number :"4",
+            description: "A diverse mix of chart-toppers and hidden gems from various genres and eras."
         }
         // Add more albums as needed
     ];
