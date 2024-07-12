@@ -322,10 +322,9 @@ document.querySelector(".hamburger").addEventListener("click", () => {
 
 // Add touch event listeners for swipe left
 let xDown = null;
-const sensitivityThreshold = 60; // Adjust this threshold to make swipe less sensitive
 
-document.addEventListener('touchstart', handleTouchStart, false);
-document.addEventListener('touchmove', handleTouchMove, false);
+document.querySelector(".right").addEventListener('touchstart', handleTouchStart, false);
+document.querySelector(".right").addEventListener('touchmove', handleTouchMove, false);
 
 function handleTouchStart(event) {
     const firstTouch = event.touches[0];
@@ -340,9 +339,13 @@ function handleTouchMove(event) {
     let xUp = event.touches[0].clientX;
     let xDiff = xDown - xUp;
 
-    if (xDiff > sensitivityThreshold) {
+    if (xDiff > 0) {
         // Swipe left detected
         document.querySelector(".left").style.left = "-120%";
+    }
+    else if (xDiff < 0) {
+        // Swipe left detected
+        document.querySelector(".left").style.left = "0%";
     }
 
     // Reset xDown
