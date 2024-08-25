@@ -392,3 +392,8 @@ currentSong.addEventListener('timeupdate', function() {
 
 // Run main function when the document is ready
 document.addEventListener("DOMContentLoaded", main);
+
+
+document.addEventListener("contextmenu", function(e){
+    e.preventDefault()
+},false)

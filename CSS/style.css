@@ -131,7 +131,8 @@ body {
     margin: 30px;
     flex-wrap: wrap;
     max-height: 57vh;
-    overflow-y: auto;
+    overflow-y: scroll;
+    /* scroll-snap-type: y mandatory; */
 }
 
 .spotifyPlaylists .card {
@@ -142,6 +143,7 @@ body {
     position: relative;
     transition: all 0.7s ease-out;
     cursor: pointer;
+    /* scroll-snap-align: centre; */
 }
 
 .card img {
