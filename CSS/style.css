@@ -105,7 +105,7 @@ body {
 
 .right {
     width: 75vw;
-    margin: 16px 0;
+    /* margin: 16px 0; */
     position: relative;
 }
 
@@ -248,7 +248,7 @@ body {
 }
 
 .songList {
-    height: 350px;
+    height: 52vh;
     overflow-y: scroll;
     margin-bottom: 44px;
 }
