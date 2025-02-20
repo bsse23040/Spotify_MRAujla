@@ -42,6 +42,8 @@ body {
     filter: invert();
 }
 
+
+
 .home ul li {
     display: flex;
     gap: 15px;
